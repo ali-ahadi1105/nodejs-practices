@@ -3,19 +3,17 @@ import { someAsyncTask } from "./someAsyncTask.js";
 import { createCancalable } from "./createCancalable.js";
 
 async function cancelableFunction(createCancalable) {
-  const result1 = await someAsyncTask(1);
+  const result1 = await createCancalable(someAsyncTask, "1");
   console.log(result1);
-  throwErrorIfCanceled(cancel);
-  const result2 = await someAsyncTask(2);
+  const result2 = await createCancalable(someAsyncTask, "2");
   console.log(result2);
-  throwErrorIfCanceled(cancel)
-  const result3 = await someAsyncTask(3);
+  const result3 = await createCancalable(someAsyncTask, "3");
   console.log(result3);
 }
 
-const cancel = { reqCanceled: false };
+let { cancalableWraper, cancel } = createCancalable();
 
-cancelableFunction(cancel).catch((err) => {
+cancelableFunction(cancalableWraper).catch((err) => {
   if (err instanceof CancelError) {
     console.log('Task is canceled by user');
   } else {
@@ -24,5 +22,5 @@ cancelableFunction(cancel).catch((err) => {
 });
 
 setTimeout(() => {
-  cancel.reqCanceled = true;
-}, 100);
+  cancel();
+}, 200);
