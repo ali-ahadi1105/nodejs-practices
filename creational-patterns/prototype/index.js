@@ -1,12 +1,14 @@
-let base_prototype = require('./base_prototype');
+const base_proto = require('./base_prototype');
 
-let codeliks = base_prototype.clone();
-codeliks.name = 'codelicks';
-codeliks.addItemsToList('product 5');
+let pro1 = base_proto.clone();
+pro1.name = "ali";
+pro1.addItemsToList('mobile');
 
-let nano = base_prototype.clone();
-nano.name = 'nano';
-nano.addItemsToList('product 6');
+let pro2 = base_proto.clone();
+pro2.name = "amin";
+pro2.addItemsToList('laptop');
 
-console.log(`${codeliks.name}: ${codeliks.cartItems}`);
-console.log(`${nano.name}: ${nano.cartItems}`);
+console.log(`${pro1.name}: ${pro1.cartItems}`);
+console.log(`${pro2.name}: ${pro2.cartItems}`);
+
+

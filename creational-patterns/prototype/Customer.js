@@ -21,10 +21,10 @@ class Customer {
     }
 
     clone() {
-        let proto = Object.getPrototypeOf(this);
+        const proto = Object.getPrototypeOf(this);
         let cloned = Object.create(proto);
 
-        cloned._name = this._name;
+        cloned._name = this.name;
         cloned._cartItems = [...this._cartItems];
 
         return cloned;
